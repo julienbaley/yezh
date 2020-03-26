@@ -1,0 +1,21 @@
+language: python
+python:
+  - "3.7"
+
+dist: bionic
+
+install:
+  - pip install -e .
+  - pip install flake8 coverage coveralls
+
+# command to run tests
+script:
+  - flake8 yezh/
+  - nosetests --with-coverage --cover-package=yezh --cover-package=modules --nologcapture
+
+notifications:
+  email:
+    - julien.baley@gmail.com
+
+after_success:
+  - coveralls
